@@ -1,14 +1,13 @@
 package images
 
 import (
-	"fmt"
 	"io"
 	"io/fs"
 )
 
 type Image struct {
 	Name  string
-	Bytes string
+	Bytes []byte
 }
 
 func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
@@ -20,7 +19,6 @@ func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
 
 	var images []Image
 	for _, f := range dir {
-		fmt.Println(f)
 		image, err := getImage(fileSystem, f.Name())
 		if err != nil {
 			return nil, err // may be incorrect
@@ -45,6 +43,6 @@ func newImage(imageFile io.Reader, imageName string) (Image, error) {
 		return Image{}, err
 	}
 
-	image := Image{Name: imageName, Bytes: string(imageData)}
+	image := Image{Name: imageName, Bytes: imageData}
 	return image, nil
 }

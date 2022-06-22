@@ -30,5 +30,5 @@ func TestGetImagesFromFs(t *testing.T) {
 		t.Errorf("got %d images, wanted %d images", len(imagesFromFs), len(fs))
 	}
 
-	assertImage(t, imagesFromFs[0], images.Image{Name: "test-1.raw", Bytes: "one"})
+	assertImage(t, imagesFromFs[0], images.Image{Name: "test-1.raw", Bytes: []byte("one")})
 }
