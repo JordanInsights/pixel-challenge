@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"os"
+	"pixel-challenge/input"
+)
 
 func main() {
-	fmt.Println("Hello, world!")
+	input.PrintMessage(os.Stdout, "Hello, welcome to pixel comparison!")
 }
