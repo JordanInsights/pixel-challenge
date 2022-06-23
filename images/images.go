@@ -10,6 +10,7 @@ type Image struct {
 	Bytes []byte
 }
 
+// Returns a slice of images from the local fs when passed valid relative filepath to a directory
 func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
 	dir, err := fs.ReadDir(fileSystem, ".")
 
@@ -28,6 +29,12 @@ func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
 	return images, nil
 }
 
+// Returns a single image from the local fs when passed valid relative filepath
+func GetSingleImage(images []Image, singleImage string) (Image, error) {
+	return Image{}, nil
+}
+
+// Reads a single image and returns invoked newImage resulting in Image{} struct
 func getImage(fileSystem fs.FS, imageName string) (Image, error) {
 	imageFile, err := fileSystem.Open(imageName)
 	if err != nil {
@@ -37,6 +44,7 @@ func getImage(fileSystem fs.FS, imageName string) (Image, error) {
 	return newImage(imageFile, imageName)
 }
 
+// takes an image file, reads the data and returns an image struct containing image name and bytes
 func newImage(imageFile io.Reader, imageName string) (Image, error) {
 	imageData, err := io.ReadAll(imageFile)
 	if err != nil {

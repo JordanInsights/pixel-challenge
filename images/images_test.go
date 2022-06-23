@@ -32,3 +32,22 @@ func TestGetImagesFromFs(t *testing.T) {
 
 	assertImage(t, imagesFromFs[0], images.Image{Name: "test-1.raw", Bytes: []byte("one")})
 }
+
+func TestGetSingleImage(t *testing.T) {
+	imageOne := images.Image{Name: "Image-1.raw", Bytes: []byte("one")}
+	imageTwo := images.Image{Name: "Image-2.raw", Bytes: []byte("two")}
+	imageSlice := make([]images.Image, 2)
+
+	imageSlice[0] = imageOne
+	imageSlice[1] = imageTwo
+
+	got, err := images.GetSingleImage(imageSlice, "Image-1.raw")
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	want := images.Image{Name: "Image-1.raw", Bytes: []byte("one")}
+
+	assertImage(t, got, want)
+}
