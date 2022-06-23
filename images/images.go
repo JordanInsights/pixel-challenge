@@ -30,8 +30,14 @@ func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
 }
 
 // Returns a single image from the local fs when passed valid relative filepath
-func GetSingleImage(images []Image, singleImage string) (Image, error) {
-	return Image{}, nil
+func GetSingleImage(images []Image, singleImageName string) (Image, error) {
+	for _, img := range images {
+		if singleImageName == img.Name {
+			return img, nil
+		}
+	}
+
+	return Image{}, ImageErrors["400"]
 }
 
 // Reads a single image and returns invoked newImage resulting in Image{} struct
