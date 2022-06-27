@@ -62,17 +62,19 @@ func CompareImagesInverted(comparisonImage, imageToAnalyse []byte, iterations in
 	}
 }
 
-func CompareArrays(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) {
+func CompareArrays(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) float64 {
 	var similarity float64 = 0
 	for i := 0; i < iterations; i++ {
 		startIndex := i * BytesPerPixel
 		endIndex := startIndex + BytesPerPixel
 
-		arrayA := (*[BytesPerPixel]byte)(comparisonImage[startIndex:endIndex])
-		arrayB := (*[BytesPerPixel]byte)(imageToAnalyse[startIndex:endIndex])
+		arrayA := *(*[BytesPerPixel]byte)(comparisonImage[startIndex:endIndex])
+		arrayB := *(*[BytesPerPixel]byte)(imageToAnalyse[startIndex:endIndex])
 
 		if arrayA == arrayB {
 			similarity += similarityIncrement
 		}
 	}
+
+	return similarity
 }

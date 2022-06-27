@@ -65,6 +65,30 @@ func TestCompareImages(t *testing.T) {
 	})
 }
 
+func TestCompareArrays(t *testing.T) {
+	t.Run("Same image passed twice results in similarity of 1.00", func(t *testing.T) {
+		comparisonImageData, err := os.ReadFile("../test-images/Bronze/1d25ea94-4562-4e19-848e-b60f1b58deee.raw")
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		imageToAnalyseData, err := os.ReadFile("../test-images/Bronze/1d25ea94-4562-4e19-848e-b60f1b58deee.raw")
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		iterations := len(comparisonImageData) / analysis.BytesPerPixel
+		similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
+
+		got := analysis.CompareArrays(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		var want float64 = 1
+
+		if got != want {
+			t.Errorf("got %+v similarity, wanted %+v similarity", got, want)
+		}
+	})
+}
+
 func BenchmarkCompareImages(b *testing.B) {
 	comparisonImageData, err := os.ReadFile("../test-images/Gold/0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw")
 	if err != nil {
