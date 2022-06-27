@@ -64,3 +64,19 @@ func TestCompareImages(t *testing.T) {
 		}
 	})
 }
+
+func BenchmarkCompareImages(b *testing.B) {
+	comparisonImageData, err := os.ReadFile("../test-images/Bronze/1d25ea94-4562-4e19-848e-b60f1b58deee.raw")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	imageToAnalyseData, err := os.ReadFile("../test-images/Bronze/1d25ea94-4562-4e19-848e-b60f1b58deee.raw")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	for i := 0; i < b.N; i++ {
+		analysis.CompareImages(comparisonImageData, imageToAnalyseData)
+	}
+}
