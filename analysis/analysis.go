@@ -1,5 +1,7 @@
 package analysis
 
+import "bytes"
+
 const BytesPerPixel int = 3
 
 func DetermineSimilarityIncrement(bytes []byte) float64 {
@@ -89,6 +91,23 @@ func CompareSlices(comparisonImage, imageToAnalyse []byte, iterations int, simil
 		sliceB := imageToAnalyse[startIndex:endIndex]
 
 		if byteSlicesEqual(sliceA, sliceB) {
+			similarity += similarityIncrement
+		}
+	}
+
+	return similarity
+}
+
+func CompareUsingEqual(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) float64 {
+	var similarity float64 = 0
+	for i := 0; i < iterations; i++ {
+		startIndex := i * BytesPerPixel
+		endIndex := startIndex + BytesPerPixel
+
+		sliceA := comparisonImage[startIndex:endIndex]
+		sliceB := imageToAnalyse[startIndex:endIndex]
+
+		if bytes.Equal(sliceA, sliceB) {
 			similarity += similarityIncrement
 		}
 	}
