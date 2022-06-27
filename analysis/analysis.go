@@ -1,5 +1,7 @@
 package analysis
 
+import "fmt"
+
 const BytesPerPixel int = 3
 
 func DetermineSimilarityIncrement(bytes []byte) float64 {
@@ -34,5 +36,6 @@ func CompareImages(comparisonImage, imageToAnalyse []byte) (similarity float64) 
 		}
 	}
 
+	fmt.Printf("\nImage had a similaity of %+v", similarity)
 	return similarity
 }
