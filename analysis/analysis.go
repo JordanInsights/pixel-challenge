@@ -78,3 +78,30 @@ func CompareArrays(comparisonImage, imageToAnalyse []byte, iterations int, simil
 
 	return similarity
 }
+
+func CompareSlices(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) float64 {
+	var similarity float64 = 0
+	for i := 0; i < iterations; i++ {
+		startIndex := i * BytesPerPixel
+		endIndex := startIndex + BytesPerPixel
+
+		sliceA := comparisonImage[startIndex:endIndex]
+		sliceB := imageToAnalyse[startIndex:endIndex]
+
+		if byteSlicesEqual(sliceA, sliceB) {
+			similarity += similarityIncrement
+		}
+	}
+
+	return similarity
+}
+
+func byteSlicesEqual(a, b []byte) bool {
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+
+	return true
+}
