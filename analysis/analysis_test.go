@@ -66,17 +66,56 @@ func TestCompareImages(t *testing.T) {
 }
 
 func BenchmarkCompareImages(b *testing.B) {
-	comparisonImageData, err := os.ReadFile("../test-images/Bronze/1d25ea94-4562-4e19-848e-b60f1b58deee.raw")
+	comparisonImageData, err := os.ReadFile("../test-images/Gold/0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw")
 	if err != nil {
 		b.Fatal(err)
 	}
 
-	imageToAnalyseData, err := os.ReadFile("../test-images/Bronze/1d25ea94-4562-4e19-848e-b60f1b58deee.raw")
+	imageToAnalyseData, err := os.ReadFile("../test-images/Gold/0a1de745-e548-4676-a954-e445bf7d0182.raw")
 	if err != nil {
 		b.Fatal(err)
 	}
 
 	for i := 0; i < b.N; i++ {
 		analysis.CompareImages(comparisonImageData, imageToAnalyseData)
+	}
+}
+
+func BenchmarkCompareImagesInverted(b *testing.B) {
+	comparisonImageData, err := os.ReadFile("../test-images/Gold/0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	imageToAnalyseData, err := os.ReadFile("../test-images/Gold/0a1de745-e548-4676-a954-e445bf7d0182.raw")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	iterations := len(comparisonImageData) / analysis.BytesPerPixel
+	similarityDecrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
+	minimumSimlarity := 0.0629739761352539
+
+	for i := 0; i < b.N; i++ {
+		analysis.CompareImagesInverted(comparisonImageData, imageToAnalyseData, iterations, similarityDecrement, minimumSimlarity)
+	}
+}
+
+func BenchmarkCompareArrays(b *testing.B) {
+	comparisonImageData, err := os.ReadFile("../test-images/Gold/0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	imageToAnalyseData, err := os.ReadFile("../test-images/Gold/0a1de745-e548-4676-a954-e445bf7d0182.raw")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	iterations := len(comparisonImageData) / analysis.BytesPerPixel
+	similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
+
+	for i := 0; i < b.N; i++ {
+		analysis.CompareArrays(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
 	}
 }
