@@ -5,16 +5,29 @@ import (
 	"os"
 	"pixel-challenge/analysis"
 	"pixel-challenge/images"
-	"pixel-challenge/input"
 )
 
+type imageFilepaths struct {
+	comparisonImage string
+	imageDirectory  string
+}
+
+func getFilepathsFromCommandLineArguments() imageFilepaths {
+	fp := imageFilepaths{os.Args[1], os.Args[2]}
+	fmt.Println(fp)
+	return fp
+}
+
 func InitialiseTool() {
-	imageFilepath, directoryFilepath := input.GetImageAndDirectoryFilepaths()
+	// imageFilepath, directoryFilepath := input.GetImageAndDirectoryFilepaths()
+	// fsImagesToBeAnalysed, _ := images.GetImagesFromFs(os.DirFS(directoryFilepath))
+	// fsComparisonImage, _ := images.GetSingleImage(fsImagesToBeAnalysed, imageFilepath)
 
-	fsImagesToBeAnalysed, _ := images.GetImagesFromFs(os.DirFS(directoryFilepath))
-	fsReferenceImage, _ := images.GetSingleImage(fsImagesToBeAnalysed, imageFilepath)
+	filepaths := getFilepathsFromCommandLineArguments()
+	fsImagesToBeAnalysed, _ := images.GetImagesFromFs(os.DirFS(filepaths.imageDirectory))
+	fsComparisonImage, _ := images.GetSingleImage(fsImagesToBeAnalysed, filepaths.comparisonImage)
 
-	go monitorAnalyses(fsReferenceImage)
+	go monitorAnalyses(fsComparisonImage)
 	addAnalyses(fsImagesToBeAnalysed)
 }
 

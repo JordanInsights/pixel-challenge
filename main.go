@@ -1,6 +1,8 @@
 package main
 
-import "pixel-challenge/orchestration"
+import (
+	"pixel-challenge/orchestration"
+)
 
 func main() {
 	orchestration.InitialiseTool()

@@ -1,6 +1,9 @@
 package analysis
 
-import "bytes"
+import (
+	"bytes"
+	"fmt"
+)
 
 const BytesPerPixel int = 3
 
@@ -36,7 +39,7 @@ func CompareImages(comparisonImage, imageToAnalyse []byte) (similarity float64) 
 		}
 	}
 
-	// fmt.Printf("\nImage had a similaity of %+v", similarity)
+	fmt.Printf("\nImage had a similaity of %+v", similarity)
 	return similarity
 }
 
