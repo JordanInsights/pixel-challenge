@@ -14,7 +14,6 @@ type imageFilepaths struct {
 
 func getFilepathsFromCommandLineArguments() imageFilepaths {
 	fp := imageFilepaths{os.Args[1], os.Args[2]}
-	fmt.Println(fp)
 	return fp
 }
 
