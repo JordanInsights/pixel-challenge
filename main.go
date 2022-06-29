@@ -1,12 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"pixel-challenge/orchestration"
+	"time"
 )
 
 func main() {
+	start := time.Now()
+
 	filepaths := orchestration.GetFilepathsFromCommandLineArguments()
 	orchestration.RunAnalysis(filepaths)
-	fmt.Println(orchestration.TopThreeSimilarities)
+
+	elapsed := time.Since(start)
+	orchestration.OutputSimilarities(elapsed, filepaths)
 }
