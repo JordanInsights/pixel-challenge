@@ -114,14 +114,27 @@ func stopAnalyses() {
 }
 
 func OutputSimilarities(elapsed time.Duration, filepaths ImageFilepaths) {
+	elapsedInMilliseconds := time.Duration(elapsed.Milliseconds())
 	data := jsonResult{
 		ComparisonImage:   filepaths.ComparisonImage,
 		DirectoryFilepath: filepaths.ImageDirectory,
-		Duration:          time.Duration(elapsed.Milliseconds()),
+		Duration:          elapsedInMilliseconds,
 		Results:           TopThreeSimilarities,
 	}
 
 	file, _ := json.MarshalIndent(data, "", " ")
 	filename := "./tmp/" + strings.TrimSuffix(filepaths.ComparisonImage, ".raw") + ".json"
 	_ = ioutil.WriteFile(filename, file, 0644)
+
+	f, err := os.OpenFile("../temp/output.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer f.Close()
+
+	str := "Run: " + filepaths.ComparisonImage + " - " + filepaths.ImageDirectory + " - " + " - Duration (ms):  " + fmt.Sprint(elapsedInMilliseconds) + "\n"
+
+	if _, err := f.WriteString(str); err != nil {
+		fmt.Println(err)
+	}
 }
