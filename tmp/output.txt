@@ -1,0 +1,4 @@
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  51.3367ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  49.7545ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.6464053s
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  650.4176ms
