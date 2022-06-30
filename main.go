@@ -29,5 +29,5 @@ func main() {
 	elapsed := time.Since(start)
 	orchestration.OutputSimilarities(elapsed, filepaths)
 
-	// time.Sleep(time.Second * 60)
+	// time.Sleep(time.Second * 300)
 }
