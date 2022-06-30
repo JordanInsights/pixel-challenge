@@ -1,4 +1,4 @@
-// package input greets the user and gathers filepaths for image processing
+// Package input greets the user and gathers filepaths for image processing
 package input
 
 import (
@@ -12,7 +12,7 @@ func PrintMessage(writer io.Writer, message string) {
 	fmt.Fprintf(writer, "%s", message)
 }
 
-// Reads user input from the command line and returns a string
+// GetFilepath reads user input from the command line and returns a string
 func GetFilepath(in *os.File) string {
 	if in == nil {
 		in = os.Stdin
