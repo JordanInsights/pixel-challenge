@@ -12,6 +12,7 @@ import (
 	"time"
 )
 
+// ImageFilepaths is a struct that contains the filepath for the directory and image being analysed
 type ImageFilepaths struct {
 	ComparisonImage string
 	ImageDirectory  string
@@ -40,15 +41,16 @@ var analysesDone chan struct{} = make(chan struct{})
 var similarities chan similarityResult = make(chan similarityResult)
 var similaritiesDone chan struct{} = make(chan struct{})
 
+// TopThreeSimilarities is a slice of length 3 that contains the most similar images to the one being analysed
 var TopThreeSimilarities []similarityResult = make([]similarityResult, 3)
 
-// Gets filepath strings from the command line
+// GetFilepathsFromCommandLineArguments gets filepath strings from the command line
 func GetFilepathsFromCommandLineArguments() ImageFilepaths {
 	fp := ImageFilepaths{os.Args[1], os.Args[2]}
 	return fp
 }
 
-// Gets the comparison images, and initialises handle and add functions
+// RunAnalysis gets the comparison images, and initialises handle and add functions
 func RunAnalysis(filepaths ImageFilepaths) {
 	comparisonImageData, _ := os.ReadFile(filepaths.ImageDirectory + "/" + filepaths.ComparisonImage)
 	comparisonImage := images.Image{
@@ -63,7 +65,7 @@ func RunAnalysis(filepaths ImageFilepaths) {
 	stopAnalyses()
 }
 
-// Invokes addAnalysisOperation for each image file in the given directory
+// addAnalyses invokes addAnalysisOperation for each image file in the given directory
 func addAnalyses(directoryName string) {
 	imagesToBeAnalysed, _ := os.ReadDir(directoryName)
 
@@ -75,7 +77,7 @@ func addAnalyses(directoryName string) {
 	}
 }
 
-// Adds an analysisOperation to the analyses channel to be executed in handleAnalyses
+// addAnalysisOperation adds an analysisOperation to the analyses channel to be executed in handleAnalyses
 func addAnalysisOperation(imageName string) (float64, error) {
 	similarityChannel := make(chan float64)
 	errorChannel := make(chan error)
@@ -90,7 +92,7 @@ func addAnalysisOperation(imageName string) (float64, error) {
 	return <-similarityChannel, <-errorChannel
 }
 
-// Iterates over the analyses channel, executes CompareImages for each request, and sends the result to the similarities channel
+// handleAnalyses iterates over the analyses channel, executes CompareImages for each request, and sends the result to the similarities channel
 func handleAnalyses(referenceImage images.Image, directoryPath string) {
 	for op := range analyses {
 		go func(op analysisOperation) {
@@ -107,7 +109,7 @@ func handleAnalyses(referenceImage images.Image, directoryPath string) {
 	defer close(analysesDone)
 }
 
-// Iterates over the similarities channel and adds results to the TopThreeSimilaties slice if appropriate
+// handleSimilarities iterates over the similarities channel and adds results to the TopThreeSimilaties slice if appropriate
 func handleSimilarities(referenceImage images.Image) {
 	for s := range similarities {
 		if referenceImage.Name != s.ImageName && s.Similarity >= TopThreeSimilarities[2].Similarity {
@@ -121,13 +123,13 @@ func handleSimilarities(referenceImage images.Image) {
 	defer close(similaritiesDone)
 }
 
-// Closes the analyses and similarity channels
+// stopAnalyses closes the analyses and similarity channels
 func stopAnalyses() {
 	close(analyses)
 	close(similarities)
 }
 
-// Writes a verbose output to a JSON file and adds a line to the output.txt file in /tmp
+// OutputSimilarities writes a verbose output to a JSON file and adds a line to the output.txt file in /tmp
 func OutputSimilarities(elapsed time.Duration, filepaths ImageFilepaths) {
 	data := jsonResult{
 		ComparisonImage:   filepaths.ComparisonImage,
