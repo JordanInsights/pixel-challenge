@@ -48,20 +48,26 @@ func GetFilepathsFromCommandLineArguments() ImageFilepaths {
 }
 
 func RunAnalysis(filepaths ImageFilepaths) {
-	fsImagesToBeAnalysed, _ := images.GetImagesFromFs(os.DirFS(filepaths.ImageDirectory))
-	fsComparisonImage, _ := images.GetSingleImage(fsImagesToBeAnalysed, filepaths.ComparisonImage)
+	// fsImagesToBeAnalysed, _ := images.GetImagesFromFs(os.DirFS(filepaths.ImageDirectory))
+	// fsComparisonImage, _ := images.GetSingleImage(fsImagesToBeAnalysed, filepaths.ComparisonImage)
 
-	go monitorAnalyses(fsComparisonImage, filepaths.ImageDirectory)
-	go handleSimilarities(fsComparisonImage)
-	addAnalyses(fsImagesToBeAnalysed)
+	comparisonImageData, _ := os.ReadFile(filepaths.ImageDirectory + "/" + filepaths.ComparisonImage)
+	comparisonImage := images.Image{
+		Name:  filepaths.ComparisonImage,
+		Bytes: comparisonImageData,
+	}
+
+	go monitorAnalyses(comparisonImage, filepaths.ImageDirectory)
+	go handleSimilarities(comparisonImage)
+	addAnalyses(filepaths.ImageDirectory)
 }
 
-func addAnalysisOperation(img images.Image) (float64, error) {
+func addAnalysisOperation(imageName string) (float64, error) {
 	similarityChannel := make(chan float64)
 	errorChannel := make(chan error)
 
 	op := analysisOperation{
-		img:               img.Name,
+		img:               imageName,
 		similarityChannel: similarityChannel,
 		errorChannel:      errorChannel,
 	}
@@ -99,9 +105,11 @@ func handleSimilarities(referenceImage images.Image) {
 	defer close(similaritiesDone)
 }
 
-func addAnalyses(imagesToBeAnalysed []images.Image) {
-	for _, img := range imagesToBeAnalysed {
-		_, err := addAnalysisOperation(img)
+func addAnalyses(directoryName string) {
+	imagesToBeAnalysed, _ := os.ReadDir(directoryName)
+
+	for _, file := range imagesToBeAnalysed {
+		_, err := addAnalysisOperation(file.Name())
 		if err != nil {
 			fmt.Println(err)
 		}
