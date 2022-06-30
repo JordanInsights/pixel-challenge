@@ -5,12 +5,13 @@ import (
 	"io/fs"
 )
 
+// Image is a struct containing an image name and a slice of bytes
 type Image struct {
 	Name  string
 	Bytes []byte
 }
 
-// Returns a slice of images from the local fs when passed valid relative filepath to a directory
+// GetImagesFromFs returns a slice of images from the local fs when passed valid relative filepath to a directory
 func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
 	dir, err := fs.ReadDir(fileSystem, ".")
 
@@ -29,7 +30,7 @@ func GetImagesFromFs(fileSystem fs.FS) ([]Image, error) {
 	return images, nil
 }
 
-// Returns a single image from the local fs when passed valid relative filepath
+// GetSingleImage returns a single image from the local fs when passed valid relative filepath
 func GetSingleImage(images []Image, singleImageName string) (Image, error) {
 	for _, img := range images {
 		if singleImageName == img.Name {
@@ -40,7 +41,7 @@ func GetSingleImage(images []Image, singleImageName string) (Image, error) {
 	return Image{}, ImageErrors["400"]
 }
 
-// Reads a single image and returns invoked newImage resulting in Image{} struct
+// getImage reads a single image and returns invoked newImage resulting in Image{} struct
 func getImage(fileSystem fs.FS, imageName string) (Image, error) {
 	imageFile, err := fileSystem.Open(imageName)
 	if err != nil {
@@ -50,7 +51,7 @@ func getImage(fileSystem fs.FS, imageName string) (Image, error) {
 	return newImage(imageFile, imageName)
 }
 
-// takes an image file, reads the data and returns an image struct containing image name and bytes
+// newImage takes an image file, reads the data and returns an image struct containing image name and bytes
 func newImage(imageFile io.Reader, imageName string) (Image, error) {
 	imageData, err := io.ReadAll(imageFile)
 	if err != nil {
