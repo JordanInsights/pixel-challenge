@@ -18,6 +18,7 @@ type ImageFilepaths struct {
 	ImageDirectory  string
 }
 
+// SimilarityResult is a struct containing an image name and a similarity score
 type SimilarityResult struct {
 	ImageName  string
 	Similarity float64
@@ -29,6 +30,7 @@ type jsonResult struct {
 	Results                            []SimilarityResult
 }
 
+// AnalysisOperation is a struct containing an image name, similarity channel and error channel
 type AnalysisOperation struct {
 	img               string
 	similarityChannel chan float64
