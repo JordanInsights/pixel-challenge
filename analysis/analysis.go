@@ -4,7 +4,6 @@ import (
 	"bytes"
 )
 
-//
 const bytesPerPixel int = 3
 
 // DetermineSimilarityIncrement determines the percentage value of a single pixel match, given a slice of bytes and a number of bytes per pixel
