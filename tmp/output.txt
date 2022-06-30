@@ -1,4 +1,120 @@
-Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  51.3367ms
-Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  49.7545ms
-Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.6464053s
-Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  650.4176ms
+Basic Compare:
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  46.0397ms
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  663.1764ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  6.7907308s
+Run: 0a0a2a80-d125-4ece-a7db-ad3325e2260e.raw - ./test-images/Platinum -  - Duration:  4m45.0499056s
+
+// Added similarityResult goroutines
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.5139936s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.5530303s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.4990914s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.5171393s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.504803s
+
+InvertedCompare: 
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  75.6906ms
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  475.0311ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.7458691s
+Run: 0a0a2a80-d125-4ece-a7db-ad3325e2260e.raw - ./test-images/Platinum -  - Duration:  5m51.1400239s
+
+// Added similarityResult goroutines
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.761642s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.6862687s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.7681978s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.1620776s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.0530531s
+
+
+CompareArrays: 
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  89.1407ms
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  755.9522ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  7.9420167s
+
+CompareSlices:
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  61.7201ms
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  580.8006ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.8611836s
+Run: 0a0a2a80-d125-4ece-a7db-ad3325e2260e.raw - ./test-images/Platinum -  - Duration:  5m18.8947804s
+
+// Added similarityResult goroutines
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.3670137s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.2057825s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.1721595s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.3587908s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.5730947s
+
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.8722ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  5.5010127s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  3.3563639s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  3.3852765s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  3.3385301s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  3.3469231s
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  3.5324093s
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  36.2268ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.9378ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  37.3292ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  37.1778ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  37.9861ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  37.9905ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  32.6933ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  32.2551ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  47.2845ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  37.2614ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  42.2338ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  40.3713ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  39.448ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  39.7767ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  38.6664ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.736ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  39.5059ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  36.7927ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.3143ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  32.4619ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  37.086ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.2137ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.3735ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  34.0726ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.5887ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  30.5643ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.3622ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  34.8161ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.0208ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  38.0848ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  32.6006ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.1037ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.7629ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  36.136ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  34.7215ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.4611ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.6812ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.6917ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.171ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  33.8712ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.7465ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  49.0176ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.6946ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  35.3179ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  36.7521ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  34.9214ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  34.1789ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  32.7466ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  36.2897ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  50.7938ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  31.5499ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  32.8562ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  48.9523ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  49.8398ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  56.2624ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  49.9977ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  51.0311ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  50.9499ms
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  653.4576ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  4.49077s
+Run: 0a0a2a80-d125-4ece-a7db-ad3325e2260e.raw - ./test-images/Platinum -  - Duration:  5m44.0594955s
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  46.7733ms
+Run: 00c0c724-3eb1-472c-b0db-3d6fce3237f7.raw - ./test-images/Silver -  - Duration:  682.0065ms
+Run: 0a0f8f44-3b78-4bff-adee-14bc708e4ba7.raw - ./test-images/Gold -  - Duration:  6.9259052s
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  50.3081ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  61.9732ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  52.9932ms
+Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration:  52.8548ms

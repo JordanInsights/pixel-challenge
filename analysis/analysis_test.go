@@ -77,10 +77,7 @@ func TestCompareArrays(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		iterations := len(comparisonImageData) / analysis.BytesPerPixel
-		similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-
-		got := analysis.CompareArrays(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		got := analysis.CompareArrays(comparisonImageData, imageToAnalyseData)
 		var want float64 = 1
 
 		if got != want {
@@ -101,10 +98,7 @@ func TestCompareSlices(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		iterations := len(comparisonImageData) / analysis.BytesPerPixel
-		similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-
-		got := analysis.CompareSlices(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		got := analysis.CompareSlices(comparisonImageData, imageToAnalyseData)
 		var want float64 = 1
 
 		if got != want {
@@ -125,10 +119,7 @@ func TestCompareUsingEqual(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		iterations := len(comparisonImageData) / analysis.BytesPerPixel
-		similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-
-		got := analysis.CompareUsingEqual(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		got := analysis.CompareUsingEqual(comparisonImageData, imageToAnalyseData)
 		var want float64 = 1
 
 		if got != want {
@@ -164,12 +155,8 @@ func BenchmarkCompareImagesInverted(b *testing.B) {
 		b.Fatal(err)
 	}
 
-	iterations := len(comparisonImageData) / analysis.BytesPerPixel
-	similarityDecrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-	minimumSimlarity := 0.0629739761352539
-
 	for i := 0; i < b.N; i++ {
-		analysis.CompareImagesInverted(comparisonImageData, imageToAnalyseData, iterations, similarityDecrement, minimumSimlarity)
+		analysis.CompareImagesInverted(comparisonImageData, imageToAnalyseData)
 	}
 }
 

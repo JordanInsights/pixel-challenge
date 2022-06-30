@@ -18,6 +18,10 @@ func CompareBytes(byteOne byte, byteTwo byte) bool {
 }
 
 func CompareImages(comparisonImage, imageToAnalyse []byte) (similarity float64) {
+	if len(comparisonImage) != len(imageToAnalyse) {
+		return 0
+	}
+
 	similarityIncrement := DetermineSimilarityIncrement(comparisonImage)
 	iterations := len(comparisonImage) / BytesPerPixel
 
@@ -42,8 +46,15 @@ func CompareImages(comparisonImage, imageToAnalyse []byte) (similarity float64) 
 	return similarity
 }
 
-func CompareImagesInverted(comparisonImage, imageToAnalyse []byte, iterations int, similarityDecrement float64, minimumSimlarity float64) {
+func CompareImagesInverted(comparisonImage, imageToAnalyse []byte) float64 {
+	if len(comparisonImage) != len(imageToAnalyse) {
+		return 0
+	}
+
 	var similarity float64 = 1
+	similarityDecrement := DetermineSimilarityIncrement(comparisonImage)
+	iterations := len(comparisonImage) / BytesPerPixel
+
 	for i := 0; i < iterations; i++ {
 		startIndex := i * BytesPerPixel
 		bytesMatch := true
@@ -60,13 +71,19 @@ func CompareImagesInverted(comparisonImage, imageToAnalyse []byte, iterations in
 			similarity -= similarityDecrement
 		}
 
-		if similarity < minimumSimlarity {
-			break
-		}
 	}
+
+	return similarity
 }
 
-func CompareArrays(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) float64 {
+func CompareArrays(comparisonImage, imageToAnalyse []byte) float64 {
+	if len(comparisonImage) != len(imageToAnalyse) {
+		return 0
+	}
+
+	similarityIncrement := DetermineSimilarityIncrement(comparisonImage)
+	iterations := len(comparisonImage) / BytesPerPixel
+
 	var similarity float64 = 0
 	for i := 0; i < iterations; i++ {
 		startIndex := i * BytesPerPixel
@@ -83,7 +100,14 @@ func CompareArrays(comparisonImage, imageToAnalyse []byte, iterations int, simil
 	return similarity
 }
 
-func CompareSlices(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) float64 {
+func CompareSlices(comparisonImage, imageToAnalyse []byte) float64 {
+	if len(comparisonImage) != len(imageToAnalyse) {
+		return 0
+	}
+
+	similarityIncrement := DetermineSimilarityIncrement(comparisonImage)
+	iterations := len(comparisonImage) / BytesPerPixel
+
 	var similarity float64 = 0
 	for i := 0; i < iterations; i++ {
 		startIndex := i * BytesPerPixel
@@ -100,7 +124,14 @@ func CompareSlices(comparisonImage, imageToAnalyse []byte, iterations int, simil
 	return similarity
 }
 
-func CompareUsingEqual(comparisonImage, imageToAnalyse []byte, iterations int, similarityIncrement float64) float64 {
+func CompareUsingEqual(comparisonImage, imageToAnalyse []byte) float64 {
+	if len(comparisonImage) != len(imageToAnalyse) {
+		return 0
+	}
+
+	similarityIncrement := DetermineSimilarityIncrement(comparisonImage)
+	iterations := len(comparisonImage) / BytesPerPixel
+
 	var similarity float64 = 0
 	for i := 0; i < iterations; i++ {
 		startIndex := i * BytesPerPixel

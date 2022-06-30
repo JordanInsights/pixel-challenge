@@ -1,1 +1,0 @@
-Run: 1d25ea94-4562-4e19-848e-b60f1b58deee.raw - ./test-images/Bronze -  - Duration (ms):  44ns
