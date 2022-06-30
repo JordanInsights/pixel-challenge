@@ -7,6 +7,36 @@ import (
 	"testing"
 )
 
+func TestGetFilepathsFromCommandLineArguments(t *testing.T) {
+	os.Args[1] = "testing"
+	os.Args[2] = "testing2"
+
+	got := orchestration.GetFilepathsFromCommandLineArguments()
+	want := orchestration.ImageFilepaths{"testing", "testing2"}
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("Got %+v, want %+v", got, want)
+	}
+}
+
+func TestAddAnalyses(t *testing.T) {
+
+}
+
+func TestStopAnalyses(t *testing.T) {
+	var analyses chan orchestration.AnalysisOperation = make(chan orchestration.AnalysisOperation)
+	var similarities chan orchestration.SimilarityResult = make(chan orchestration.SimilarityResult)
+
+	orchestration.StopAnalyses(analyses, similarities)
+
+	select {
+	case <-analyses:
+	case <-similarities:
+	default:
+		t.Error("Channel is not closed")
+	}
+}
+
 // type SpyAnalysisOperationAdder struct {
 // 	Calls int
 // }
@@ -26,18 +56,6 @@ import (
 // 	}
 
 // }
-
-func TestGetFilepathsFromCommandLineArguments(t *testing.T) {
-	os.Args[1] = "testing"
-	os.Args[2] = "testing2"
-
-	got := orchestration.GetFilepathsFromCommandLineArguments()
-	want := orchestration.ImageFilepaths{"testing", "testing2"}
-
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("Got %+v, want %+v", got, want)
-	}
-}
 
 // issues with closing channels
 // stopping the channel from closing manually gets it to run
