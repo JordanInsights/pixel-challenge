@@ -6,6 +6,7 @@ import (
 
 const BytesPerPixel int = 3
 
+// Given a slice of bytes and a number of bytes per pixel, determines the percentage value of a single pixel match
 func DetermineSimilarityIncrement(bytes []byte) float64 {
 	var numberOfPixels float64 = float64(len(bytes) / BytesPerPixel)
 	var incrementPerPixel float64 = 1.00 / numberOfPixels
@@ -13,10 +14,12 @@ func DetermineSimilarityIncrement(bytes []byte) float64 {
 	return incrementPerPixel
 }
 
+// Compares a byte to another byte and returns a boolean representing presence of a match
 func CompareBytes(byteOne byte, byteTwo byte) bool {
 	return byteOne == byteTwo
 }
 
+// Checks images are of same size and iterates over 'pixels'. Increments similarity if a set of bytes denoting a pixel match the comparison set of bytes
 func CompareImages(comparisonImage, imageToAnalyse []byte) (similarity float64) {
 	if len(comparisonImage) != len(imageToAnalyse) {
 		return 0
@@ -46,6 +49,7 @@ func CompareImages(comparisonImage, imageToAnalyse []byte) (similarity float64) 
 	return similarity
 }
 
+// Checks images are of same size, iterates over bytes and decrements a similarity score if a set of bytes denoting a pixel don't match a comparison image
 func CompareImagesInverted(comparisonImage, imageToAnalyse []byte) float64 {
 	if len(comparisonImage) != len(imageToAnalyse) {
 		return 0
@@ -76,6 +80,7 @@ func CompareImagesInverted(comparisonImage, imageToAnalyse []byte) float64 {
 	return similarity
 }
 
+// Iterates over a set of bytes, converting a set of given length into an array. Compares arrays and increments similarity if they match
 func CompareArrays(comparisonImage, imageToAnalyse []byte) float64 {
 	if len(comparisonImage) != len(imageToAnalyse) {
 		return 0
@@ -100,6 +105,7 @@ func CompareArrays(comparisonImage, imageToAnalyse []byte) float64 {
 	return similarity
 }
 
+// Iterates over a set of bytes, converting a set of given length into a slice. Compares slices and increments similarity if they match
 func CompareSlices(comparisonImage, imageToAnalyse []byte) float64 {
 	if len(comparisonImage) != len(imageToAnalyse) {
 		return 0
@@ -124,6 +130,7 @@ func CompareSlices(comparisonImage, imageToAnalyse []byte) float64 {
 	return similarity
 }
 
+// Iterates over a set of bytes and compares to a comparison image useing the Equal method from the bytes package. Increments a similarity score if they match
 func CompareUsingEqual(comparisonImage, imageToAnalyse []byte) float64 {
 	if len(comparisonImage) != len(imageToAnalyse) {
 		return 0
@@ -148,6 +155,7 @@ func CompareUsingEqual(comparisonImage, imageToAnalyse []byte) float64 {
 	return similarity
 }
 
+// Iterates over a slice and compares byte values to those at the same index of second slice
 func byteSlicesEqual(a, b []byte) bool {
 	for i, v := range a {
 		if v != b[i] {
