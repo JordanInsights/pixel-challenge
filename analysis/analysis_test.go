@@ -171,11 +171,8 @@ func BenchmarkCompareArrays(b *testing.B) {
 		b.Fatal(err)
 	}
 
-	iterations := len(comparisonImageData) / analysis.BytesPerPixel
-	similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-
 	for i := 0; i < b.N; i++ {
-		analysis.CompareArrays(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		analysis.CompareArrays(comparisonImageData, imageToAnalyseData)
 	}
 }
 
@@ -190,11 +187,8 @@ func BenchmarkCompareSlices(b *testing.B) {
 		b.Fatal(err)
 	}
 
-	iterations := len(comparisonImageData) / analysis.BytesPerPixel
-	similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-
 	for i := 0; i < b.N; i++ {
-		analysis.CompareSlices(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		analysis.CompareSlices(comparisonImageData, imageToAnalyseData)
 	}
 }
 
@@ -209,10 +203,7 @@ func BenchmarkCompareUsingEqual(b *testing.B) {
 		b.Fatal(err)
 	}
 
-	iterations := len(comparisonImageData) / analysis.BytesPerPixel
-	similarityIncrement := analysis.DetermineSimilarityIncrement(comparisonImageData)
-
 	for i := 0; i < b.N; i++ {
-		analysis.CompareUsingEqual(comparisonImageData, imageToAnalyseData, iterations, similarityIncrement)
+		analysis.CompareUsingEqual(comparisonImageData, imageToAnalyseData)
 	}
 }
