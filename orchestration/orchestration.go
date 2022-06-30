@@ -29,7 +29,7 @@ type jsonResult struct {
 }
 
 type analysisOperation struct {
-	img               images.Image
+	img               string
 	similarityChannel chan float64
 	errorChannel      chan error
 }
@@ -51,7 +51,7 @@ func RunAnalysis(filepaths ImageFilepaths) {
 	fsImagesToBeAnalysed, _ := images.GetImagesFromFs(os.DirFS(filepaths.ImageDirectory))
 	fsComparisonImage, _ := images.GetSingleImage(fsImagesToBeAnalysed, filepaths.ComparisonImage)
 
-	go monitorAnalyses(fsComparisonImage)
+	go monitorAnalyses(fsComparisonImage, filepaths.ImageDirectory)
 	go handleSimilarities(fsComparisonImage)
 	addAnalyses(fsImagesToBeAnalysed)
 }
@@ -61,7 +61,7 @@ func addAnalysisOperation(img images.Image) (float64, error) {
 	errorChannel := make(chan error)
 
 	op := analysisOperation{
-		img:               img,
+		img:               img.Name,
 		similarityChannel: similarityChannel,
 		errorChannel:      errorChannel,
 	}
@@ -70,12 +70,14 @@ func addAnalysisOperation(img images.Image) (float64, error) {
 	return <-similarityChannel, <-errorChannel
 }
 
-func monitorAnalyses(referenceImage images.Image) {
+func monitorAnalyses(referenceImage images.Image, directoryPath string) {
 	for op := range analyses {
 		go func(op analysisOperation) {
-			similarity := analysis.CompareImages(referenceImage.Bytes, op.img.Bytes)
+			path := directoryPath + "/" + op.img
+			imageData, _ := os.ReadFile(path)
+			similarity := analysis.CompareImages(referenceImage.Bytes, imageData)
 
-			similarities <- similarityResult{op.img.Name, similarity}
+			similarities <- similarityResult{op.img, similarity}
 			op.similarityChannel <- similarity
 			op.errorChannel <- nil
 		}(op)

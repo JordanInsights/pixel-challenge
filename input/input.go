@@ -27,13 +27,14 @@ func GetFilepath(in *os.File) string {
 	return filepath
 }
 
+// Not used any more
 // Returns imageFilepath and directoryFilepath strings
-func GetImageAndDirectoryFilepaths() (imageFilepath string, directoryFilepath string) {
-	PrintMessage(os.Stdout, "\nEnter the filepath of the image you wish to find the three closest matches for: ")
-	imageFilepath = GetFilepath(nil)
+// func GetImageAndDirectoryFilepaths() (imageFilepath string, directoryFilepath string) {
+// 	PrintMessage(os.Stdout, "\nEnter the filepath of the image you wish to find the three closest matches for: ")
+// 	imageFilepath = GetFilepath(nil)
 
-	PrintMessage(os.Stdout, "\nEnter the filepath for the directory containing the other images to compare against: ")
-	directoryFilepath = GetFilepath(nil)
+// 	PrintMessage(os.Stdout, "\nEnter the filepath for the directory containing the other images to compare against: ")
+// 	directoryFilepath = GetFilepath(nil)
 
-	return imageFilepath, directoryFilepath
-}
+// 	return imageFilepath, directoryFilepath
+// }
